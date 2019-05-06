@@ -7,19 +7,19 @@
                     <div class="box-title">
                         {{__('Edit Event')}}
                     </div>
-                
+
                 </div>
                 <form method="post" action="">
                     @csrf
                     @method('patch')
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input id="name" class="form-control" type="text" placeholder="Enter event name" name="name">
+                        <input id="name" class="form-control" type="text" placeholder="Enter event name" name="name" value="{{$event->name}}">
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" class="form-control" name="description" placeholder="Enter event description"></textarea>
+                        <textarea id="description" class="form-control" name="description" placeholder="Enter event description">{{$event->description}}</textarea>
                     </div>
                       <div class="form-group">
                             <label>Event Start Date</label>
@@ -28,7 +28,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" id="datepicker" placeholder="Select event start date" name="start">
+                            <input type="text" class="form-control pull-right" id="datepicker" placeholder="Select event start date" name="start" value="{{$event->start}}">
                     </div>
                     <div class="form-group">
                             <label>Event Start Date</label>
@@ -37,7 +37,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" id="datepicker" placeholder="Select event start date" name="start">
+                            <input type="text" class="form-control pull-right" id="datepicker" placeholder="Select event end date" name="end" value={{$event->end}}>
                     </div>
                     <hr>
                      <div class="form-group">
@@ -47,7 +47,7 @@
 
                 </form>
             </div>
-            
+
         </div>
     </div>
 @endsection

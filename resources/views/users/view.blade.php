@@ -21,7 +21,7 @@
                             <th>Action</th>
                         </tr>
                         <tbody>
-                               
+
                                 <tr>
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
@@ -29,17 +29,17 @@
                                     <td>{{$user->post}}</td>
                                     <td>{{$user->department}}</td>
                                     <td>{{$user->photo}}</td>
-                                    <td>{{$user->type}}</td>
+                                    <td>@if($user->type==1){{"Super-Admin"}}@elseif($user->type==2){{"Admin"}}@else{{"User"}}@endif</td>
                                     <td>{{$user->bio}}</td>
                                  </tr>
-                               
-                            
+
+
                         </tbody>
                     </thead>
                 </table>
             </div>
         </div>
-            
+
         </div>
     </div>
 @endsection

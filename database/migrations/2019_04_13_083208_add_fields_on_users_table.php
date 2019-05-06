@@ -17,7 +17,7 @@ class AddFieldsOnUsersTable extends Migration
             $table->string('post')->nullable();
             $table->string('department')->nullable();
             $table->string('photo')->nullable();
-            $table->enum('type',[0,1,2])->default(0);
+            $table->enum('type',[1,2,3])->default(1);
             $table->boolean('is_nominee')->default(false)->nullable();
 
 

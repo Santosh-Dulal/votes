@@ -14,9 +14,19 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-    Route::post('/logout','api\AuthController@logout');
+   // return $request->user();
+   // Route::post('/logout','api\AuthController@logout');
 });
+Route::middleware('auth:api')->post('/logout', function (Request $request) {
+    // return $request->user();
+     Route::post('/logout','api\AuthController@logout');
+ });
+
+
+ Route::middleware('auth:api')->post('/logout', function (Request $request) {
+    // return $request->user();
+     Route::post('/vote','api\AuthController@vote');
+ });
 Route::post('/login','Api\AuthController@login');
 
 

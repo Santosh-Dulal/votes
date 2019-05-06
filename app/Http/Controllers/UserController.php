@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -12,10 +15,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
+
         $users = User::all();
+
+
         return view('users.index')->withUsers($users);
+
+        return $this->authorize('view',$user);
+
+
+
     }
 
     /**
@@ -23,9 +34,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
-        // $user= new User;
+        $this->authorize('create',$user  );
+
         return view('users.create');
 
     }
@@ -47,15 +59,17 @@ class UserController extends Controller
         ]);
 
         $users = new User;
+
+
         $users->name=$request->name;
         $users->email =$request->email;
-        $users->password = bcrypt($request->password);
+        $users->password = Hash::make($request->password);
         $users->post=$request->post;
         $users->department=$request->department;
         $users->type=$request->type;
         $users->photo = $request->photo;// new code should be placed..
         $users->bio = $request->bio;
-        $users->is_nominee=$request->is_nominee;
+
 
         $users->save();
         return redirect()->back();
@@ -70,9 +84,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
         $user = User::findOrfail(1);
+
         return view('users.view',compact('user'));
+
+
+
+
     }
 
     /**
@@ -83,9 +101,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
-        $user= User::find($id);
-        return view('users.edit')->withUsers($user);
+
+
+            $user= User::find($id);
+            return view('users.edit')->withUsers($user);
+
+
     }
 
     /**
@@ -97,29 +118,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'name'=>'required|max:155',
-            'email'=>'required|email',
+            'email'=>'required',
             'password'=>'required|max:255',
 
         ]);
 
-        $users = new User;
-        $users->name=$request->name;
-        $users->email =$request->email;
-        $users->password = $request->password;
-        $users->post=$request->post;
+        $users =  User::find($id);
         $users->department=$request->department;
         $users->type=$request->type;
+        $users->post=$request->post;
+
         $users->photo = $request->photo;// new code should be placed..
         $users->bio = $request->bio;
-        $users->is_nominee=$request->is_nominee;
         $users->save();
         return redirect()->back();
 
     }
 
-        
+
     /**
      * Remove the specified resource from storage.
      *

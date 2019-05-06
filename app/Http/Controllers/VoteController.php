@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use App\vote;
+
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
+use Faker\Provider\DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
@@ -14,6 +18,11 @@ class VoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
@@ -36,15 +45,21 @@ class VoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $users= input::get('users');
-      $vote = new vote;
-      $vote->vote_month=now();
-      $vote->year = now();
-      $vote->voted_for = $request->voted_for;
-      $vote->save();
-      $vote->user()->attach($users);
+    public function store(Request $request){
+
+        $request->validate([
+            'voted_for'=>'required'
+        ]);
+        $id = Auth::id();
+        $vote = new vote;
+        $vote->vote_month=now();
+        $vote->year = now();
+        $vote->voted_by=$id;
+        $vote->voted_for = $request->voted_for;
+        $vote->save();
+
+
+      return redirect()->back();
 
 
 

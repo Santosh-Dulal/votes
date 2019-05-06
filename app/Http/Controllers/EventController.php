@@ -14,7 +14,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::all();
+        return view('events.index')->withEvents($events);
     }
 
     /**
@@ -40,7 +41,7 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->description = $request->description;
         $event->start = $request->start;
-        $event->end = $request->end;        
+        $event->end = $request->end;
         $event->save();
 
         return redirect()->back();
@@ -65,8 +66,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('events.edit');
+        $event=Event::find($id);
+        return view('events.edit')->withEvent($event);
     }
 
     /**
@@ -82,7 +83,7 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->description = $request->description;
         $event->start = $request->start;
-        $event->end = $request->end;        
+        $event->end = $request->end;
         $event->save();
 
         return redirect()->back();

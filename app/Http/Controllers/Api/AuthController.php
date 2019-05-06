@@ -56,4 +56,29 @@ class AuthController extends Controller
             'message'=>'Successfully logged out'
         ]);
     }
+
+
+    public function vote(Request $request){
+        $request->validate([
+           'voted_for'=>'required|'
+        ]);
+
+
+      if (Auth::check()) {
+        $id = Auth::id();
+        $vote = new vote;
+        $vote->vote_month=now();
+        $vote->year = now();
+        $vote->voted_by=$id;
+        $vote->voted_for = $request->voted_for;
+        $vote->save();
+        return response()->json($vote);
+      }
+      else {
+          return response()->json([
+            'Please login '
+          ]);
+      }
+
+    }
 }

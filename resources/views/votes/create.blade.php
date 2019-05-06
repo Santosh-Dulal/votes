@@ -12,10 +12,10 @@
                     <form method="post" action="{{route('votes.store','$vote->id')}}">
                     @csrf
                             <div class="form-group">
-                                <label for="name">Vote Nominee</label>
-                                <select id="name" class="form-control select2" multiple="multiple" name="votes[]" placeholder="Select any four nominees to vote">
+                                <label for="voted_for">Vote Nominee</label>
+                                <select id="voted_for" class="form-control select2"  name="voted_for" placeholder="Select any  nominees to vote">
                                     @foreach ($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                        <option value="{{$user->name}}">{{$user->name}}</option>
                                     @endforeach
                                 </select>
 

@@ -40,7 +40,7 @@ class User extends Authenticatable
 
 
     public function votes(){
-        $this->hasOne(vote::class);
+       return $this->hasOne(User::class);
 
 }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Nominee;
+use DB;
 
 class NomiController extends Controller
 {
@@ -14,7 +16,8 @@ class NomiController extends Controller
      */
     public function index()
     {
-        //
+       // $nomis = DB::table('users')->select('is_nominee');
+        return view('nominees.index');
     }
 
     /**
@@ -37,24 +40,14 @@ class NomiController extends Controller
      */
     public function store(Request $request)
     {
-   
+
        foreach ($request->nominees as $nominee){
         $user = User::findOrfail($nominee);
         $user->is_nominee = true;
         $user->save();
+        return redirect()->back();
 
        }
-
-
-
-
-
-
-
-
-
-
-
     }
 
 

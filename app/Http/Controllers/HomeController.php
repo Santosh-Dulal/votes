@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\vote;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['users_count']= User::count();
+        $data['votes_count']=vote::count();
+        $data['votes']=vote::max('voted_for');
+        return view('home')->with($data)->with($data)->with($data);
     }
 }

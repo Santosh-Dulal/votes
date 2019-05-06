@@ -143,7 +143,7 @@ return [
             'submenu'=>[
                 [
                     "text" => "Select Nominees",
-                    "url" => ""
+                    "url" => "nomis/create"
                 ]
             ]
         ],
@@ -152,7 +152,7 @@ return [
             'submenu'=>[
                 [
                     "text" => "Vote Nominees",
-                    "url" => ""
+                    "url" => "votes/create"
                 ]
             ]
         ],

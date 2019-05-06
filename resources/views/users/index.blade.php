@@ -12,7 +12,7 @@
                 <table class="table table-primary table table-bordered">
                     <thead>
                         <tr>
-                           
+
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -33,7 +33,7 @@
                                 <td>{{$user->post}}</td>
                                 <td>{{$user->department}}</td>
                                 <td>{{$user->photo}}</td>
-                                <td>{{$user->type}}</td>
+                                <td>@if($user->type==1){{"Super-Admin"}}@elseif($user->type==2){{"Admin"}}@else{{"User"}}@endif</td>
                                 <td>{{$user->bio}}</td>
                                     <td>
                                         <div class="btn-group">
@@ -43,8 +43,9 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
+
                                                 <li><a href="{{route('users.edit',[$user->id])}}">Edit</a></li>
-                                                <li><a href="#">View</a></li>
+                                                <li><a href="{{route('users.show',$user->id)}}">View</a></li>
                                                 <li><a href="{{route('users.destroy',[$user->id])}}">Delete</a></li>
                                              </ul>
                             </div>
@@ -55,8 +56,8 @@
                 </table>
             </div>
         </div>
-        
+
     </div>
 </div>
-    
+
 @endsection

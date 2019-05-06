@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('js')
-    
+
 <script src="{{asset('/vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
      <script>
         $('#lfm').filemanager('image');
@@ -58,24 +58,21 @@
                             </div>
                                 <div class="checkbox">
                                 <strong> Staff Type</strong></br>
-                                    <input type="radio" name="type" value="0" checked="checked":null>Super-Admin
-                                     <input type="radio" name="type" value="1" checked="checked":null>Admin
-                                    <input type="radio" name="type" value="2" checked="checked":null>User
+                                    <input type="radio" name="type" value="1" checked="checked":null>Super-Admin
+                                     <input type="radio" name="type" value="2" checked="checked":null>Admin
+                                    <input type="radio" name="type" value="3" checked="checked":null>User
                                 </div>
 
-                                <div class="form-group">
-                                <label for="is_nominee">Is_Nominee</label>
-                                <input id="is_nominee" class="form-control" type="text" name="is_nominee" placeholder="Enter user email">
-                            </div>
+
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
-                                
+
                         </form>
                 </div>
         </div>
     </div>
 </div>
-    
+
 @endsection
