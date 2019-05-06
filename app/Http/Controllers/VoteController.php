@@ -35,7 +35,7 @@ class VoteController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $users = User::where('is_nominee',1)->get();
         return view('votes.create')->withUsers($users);
     }
 
