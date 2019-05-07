@@ -20,7 +20,7 @@ class AuthController extends Controller
 
             $user = User::where('email',$request->email)->first();
             if (!$user) {
-                return response(['status'=>'error','message','User not found']);
+                return response(['status'=>'error','message'=>'User not found']);
             }
            if (Hash::check($request->password,$user->password)) {
                 // $http = new Client;
@@ -34,7 +34,7 @@ class AuthController extends Controller
                 //         'scope'=>''
                 //     ]
                 // ]);
-                $token = $user->createToken('Token Name')->accessToken;
+                $token = $user->createToken('Token Name')->token;
 
                 return response()->json([
                     'token' => $token,
@@ -50,11 +50,9 @@ class AuthController extends Controller
 
     }
 
-    public function logout(Request $request){
+    public function logout(){
         $request->user()->token()->revoke();
-        return response()->json([
-            'message'=>'Successfully logged out'
-        ]);
+        return response()->json(['message'=>'Successfully logged out']);
     }
 
 

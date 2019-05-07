@@ -17,7 +17,9 @@ class NomiController extends Controller
     public function index()
     {
        // $nomis = DB::table('users')->select('is_nominee');
-        return view('nominees.index');
+       //dd("dd");
+         $nominees = User::where('is_nominee', 1)->get();
+        return view('nominees.index')->with('nominees', $nominees);
     }
 
     /**
@@ -40,14 +42,16 @@ class NomiController extends Controller
      */
     public function store(Request $request)
     {
-
+        //  return $request->all();
+        $request->validate([
+            'nominees' => 'required|array',
+        ]);
        foreach ($request->nominees as $nominee){
         $user = User::findOrfail($nominee);
         $user->is_nominee = true;
         $user->save();
-        return redirect()->back();
-
        }
+       return redirect()->route('nomis.index');
     }
 
 

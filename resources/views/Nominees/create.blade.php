@@ -17,7 +17,7 @@
                 <div class="box-body">
     	    <form method="post" action="{{route('nomis.store','$nominee->id')}}">
                 @csrf
-                     <select class="form-control select2 " name="nominees[]" multiple="multiple" >
+                     <select class="form-control select2 " name="nominees[]" multiple="multiple">
                                  @foreach ($users as $user)
                                  <option value="{{$user->id}}">{{$user->name}}</option>
                                  @endforeach
@@ -36,7 +36,10 @@
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="{{asset('dist/js/select2.min.js')}}"></script>
 <script>
- $('.select2').select2();
+ $('.select2').select2({
+     placeholder: "select the nominee"
+
+});
 
 </script>
 @endsection

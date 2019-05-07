@@ -144,6 +144,10 @@ return [
                 [
                     "text" => "Select Nominees",
                     "url" => "nomis/create"
+                ],
+                [
+                    "text" => "List Nominees",
+                    "url" => "nomis/nomis"
                 ]
             ]
         ],
