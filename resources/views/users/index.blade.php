@@ -46,7 +46,14 @@
 
                                                 <li><a href="{{route('users.edit',[$user->id])}}">Edit</a></li>
                                                 <li><a href="{{route('users.show',$user->id)}}">View</a></li>
-                                                <li><a href="{{route('users.destroy',[$user->id])}}">Delete</a></li>
+                                                <li>
+                                                        <form method="post" action="{{route('users.destroy',[$user->id])}}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                               <button type="submit">Deleted</button>
+                                                        </form>
+                                                </li>
+
                                              </ul>
                             </div>
                                     </td>

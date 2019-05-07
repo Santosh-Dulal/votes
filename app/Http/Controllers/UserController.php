@@ -23,7 +23,7 @@ class UserController extends Controller
 
         return view('users.index')->withUsers($users);
 
-        return $this->authorize('view',$user);
+        // return $this->authorize('view',$user);
 
 
 
@@ -147,6 +147,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // User::where('id',$id)->delete();
+
+
+        return $user = User::find($id);
+        $user->delete();
+        return redirect(route('users.index'));
+
+
     }
 }

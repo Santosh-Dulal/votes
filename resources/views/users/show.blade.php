@@ -31,6 +31,7 @@
                                     <td>{{$user->photo}}</td>
                                     <td>@if($user->type==1){{"Super-Admin"}}@elseif($user->type==2){{"Admin"}}@else{{"User"}}@endif</td>
                                     <td>{{$user->bio}}</td>
+                                    
                                  </tr>
 
 
